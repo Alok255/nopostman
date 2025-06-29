@@ -1,29 +1,30 @@
-# Postman Clone API - Spring Boot
+# API Test Console – Spring Boot
 
-This is a lightweight, open-source REST client built using **Spring Boot**. It mimics the core functionality of Postman via a Swagger UI, allowing users to dynamically test REST APIs with different HTTP methods, headers, body, and authentication types.
+**API Test Console** is a lightweight, developer-focused REST client built using **Spring Boot**. It enables dynamic testing of REST APIs directly from a Swagger UI interface, offering support for all HTTP methods, custom headers, request payloads, and various authentication mechanisms.
 
-## 🚀 Tech Stack
-- **Java 17**
-- **Spring Boot 3.2.0**
-- **Spring Web**
-- **Springdoc OpenAPI (Swagger UI)**
-- **Java HttpClient (JDK 11+)**
-- **Lombok**
+## Technology Stack
+- Java 17
+- Spring Boot 3.2.0
+- Spring Web
+- Java HttpClient (JDK 11+)
+- Springdoc OpenAPI (Swagger UI)
+- Lombok
 
 ---
 
-## 🔧 How It Works
-You send a single POST request to `/api/test`, which accepts the desired method, URL, headers, body, and authentication. The server makes the request on your behalf and returns the response.
+## Overview
+This tool accepts a single POST request to the `/api/test` endpoint, encapsulating the target HTTP method, request URL, headers, body, and authentication parameters. The backend performs the HTTP request on your behalf and returns the full response, including status, headers, and body.
 
 ### Swagger UI
-You can use the built-in Swagger UI to test the API:  
-📍 `http://localhost:8080/swagger-ui.html`
+Test the functionality through an interactive Swagger interface:  
+ `http://localhost:8080/swagger-ui.html`
 
 ---
 
-## 📬 Example Request Payloads (RequestBody for /api/test)
+## Usage Examples
+The following examples demonstrate how to structure the JSON payload when sending a request to `/api/test`.
 
-### 1. 🔍 GET Request (No Auth)
+### GET Request (No Authentication)
 ```json
 {
   "method": "GET",
@@ -35,7 +36,7 @@ You can use the built-in Swagger UI to test the API:
 }
 ```
 
-### 2. 📝 POST Request with JSON Body (No Auth)
+### POST Request with JSON Payload
 ```json
 {
   "method": "POST",
@@ -48,7 +49,7 @@ You can use the built-in Swagger UI to test the API:
 }
 ```
 
-### 3. ✏️ PUT Request
+### PUT Request
 ```json
 {
   "method": "PUT",
@@ -61,7 +62,7 @@ You can use the built-in Swagger UI to test the API:
 }
 ```
 
-### 4. ❌ DELETE Request
+### DELETE Request
 ```json
 {
   "method": "DELETE",
@@ -72,9 +73,9 @@ You can use the built-in Swagger UI to test the API:
 
 ---
 
-## 🔐 Auth Type Scenarios
+## Authentication Scenarios
 
-### 1. ✅ Bearer Token Auth (e.g. GoRest API)
+### Bearer Token Authentication (GoRest API Example)
 ```json
 {
   "method": "GET",
@@ -87,7 +88,7 @@ You can use the built-in Swagger UI to test the API:
 }
 ```
 
-### 2. 🔑 Basic Auth (e.g. httpbin.org)
+### Basic Authentication (httpbin.org Example)
 ```json
 {
   "method": "GET",
@@ -98,11 +99,7 @@ You can use the built-in Swagger UI to test the API:
 }
 ```
 
-### 3. 🔐 Generate JWT Token (Example)
-Most public APIs now require an API key. Instead of `reqres.in`, you can use a reliable, open endpoint from **https://jwt.io/** or mock one locally.
-
-Here's how you can generate a mock JWT token from an open mock endpoint:
-
+### JWT Token Generation Example (dummyjson.com)
 ```json
 {
   "method": "POST",
@@ -120,50 +117,33 @@ Here's how you can generate a mock JWT token from an open mock endpoint:
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
-You can then copy this `token` into the Bearer Auth request example.json
-{
-"method": "POST",
-"url": "https://reqres.in/api/login",
-"headers": {
-"Content-Type": "application/json"
-},
-"body": "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}",
-"authType": "NONE"
-}
-```
-**Expected Response:**
-```json
-{
-  "token": "QpwL5tke4Pnpja7X4"
-}
-```
-You can then use this token in Bearer auth scenarios.
+You can use this token in Bearer-authenticated requests.
 
 ---
 
-## 📦 How to Run
+## Getting Started
 ```bash
-git clone https://github.com/your-repo/postman-clone-springboot.git
-cd postman-clone-springboot
-./mvnw spring-boot:run
+git clone https://github.com/your-repo/api-test-console.git
+cd api-test-console
+gradlew clean build
+gradlew spring-boot:run
 ```
-
-Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-
----
-
-## ✅ Future Enhancements
-- UI interface (React/Thymeleaf)
-- Request history and caching
-- Token management interface
-- Error log and retry support
+Access Swagger UI at: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 ---
 
-## 🤝 Contribution
-PRs are welcome! For major changes, please open an issue first to discuss what you would like to change.
+## Roadmap
+- Web-based UI interface (React/Thymeleaf)
+- Request history and reusability
+- JWT decoding and management
+- Error log tracking and retry mechanism
 
 ---
 
-## 📄 License
-[MIT](LICENSE)
+## Contributing
+Contributions are welcome! Please submit a pull request or open an issue to propose improvements or features.
+
+---
+
+## License
+Distributed under the [MIT License](LICENSE).
